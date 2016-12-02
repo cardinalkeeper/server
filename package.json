@@ -1,0 +1,31 @@
+{
+  "description": "Кардинал Кипер",
+  "author": "Khusamov Sukhrob <khusamov@yandex.ru>",
+  "name": "cardinalkeeper",
+  "license": "GPL-3.0",
+  "version": "0.0.1",
+  "main": "app/index.js",
+  "scripts": {
+    "start": "nodemon --debug index.js",
+    "build": "",
+    "serve": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cardinalkeeper/server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cardinalkeeper/server/issues",
+    "email": "khusamov@yandex.ru"
+  },
+  "engines": {
+    "node": "^6.2.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.1",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
+  }
+}
