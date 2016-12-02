@@ -36,10 +36,12 @@ cd C:/@repositories/cardinalkeeper/client/cardinal && sencha app build
 Запуск 
 ------
 
-Запуск сервера для тестирования:
+Три варианта запуска сервера для тестирования:
 
 ```
-cd C:/@repositories/cardinalkeeper && npm run start  
+cd C:/@repositories/cardinalkeeper && cls && npm run start -- --config ./temp/config.json
+cd C:/@repositories/cardinalkeeper && cls && node index.js -c temp/config.json
+cd C:/@repositories/cardinalkeeper && cls && nodemon --debug index.js -- --config ./temp/config.json
 ```
 
 Запуск клиентской части для тестирования:

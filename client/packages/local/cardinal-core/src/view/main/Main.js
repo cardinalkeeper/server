@@ -15,7 +15,8 @@ Ext.define('Cardinal.core.view.main.Main', {
 
         'Cardinal.core.view.main.MainController',
         'Cardinal.core.view.main.MainModel',
-        'Cardinal.core.view.main.List'
+        'Cardinal.core.view.main.List',
+        "Cardinal.core.view.migrationHistory.MigrationHistory"
     ],
 
     controller: 'main',
@@ -84,11 +85,11 @@ Ext.define('Cardinal.core.view.main.Main', {
             xtype: 'mainlist'
         }]
     }, {
-        title: 'Users',
+        title: 'История миграции БД',
         iconCls: 'fa-user',
-        bind: {
-            html: '{loremIpsum}'
-        }
+        items: [{
+            xtype: 'migration-history'
+        }]
     }, {
         title: 'Groups',
         iconCls: 'fa-users',

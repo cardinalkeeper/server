@@ -1,8 +1,34 @@
 
-const config = null;
+const pkg = require("load-pkg").sync(__dirname);
+const program = require("commander");
 
-const app = require("./app")(config);
+console.log(pkg.description, pkg.version);
 
-app.listen(8080, function() {
-	console.log("Приложение запущено на порту 8080!");
-});
+// Command Line
+
+program
+	.version(pkg.version)
+	.usage("[options]")
+	.option("-c, --config [file]", "Путь к конфигурационному файлу")
+	.parse(process.argv);
+
+if (!program.config) program.help();
+
+
+if (program.config) {
+	
+	const config = require(program.config);
+	
+	const app = require("./app")(config);
+	
+	const port = 8080;
+
+	app.listen(port, function() {
+		console.log(`Веб-сервер запущен на порту ${port}!`);
+	});
+	
+}
+
+
+
+

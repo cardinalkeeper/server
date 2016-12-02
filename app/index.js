@@ -3,18 +3,33 @@
  * Создание приложения Express.
  */
 
+const path = require("path");
+const cors = require("cors");
+const express = require("express");
+const favicon = require("serve-favicon");
+
 module.exports = config => {
 	
+	const clientDir = path.join(__dirname, "../client/build/production/Cardinal");
 	
 	process.env.NODE_PATH += ";./modules"; // NODE_PATH=./modules 
-	
-	const path = require("path");
-	const express = require("express");
-	const cors = require("cors");
 	
 	const models = require("./models")(config.models);
 	
 	const app = express();
+	
+	app.locals.pretty = true;
+	app.set("view engine", "jade");
+	app.set("views", path.join(__dirname, "views"));
+	app.locals.basedir = app.get("views");
+	
+	/*app.use((req, res, next) => {
+		console.log(req.path);
+		next();
+	});*/
+	
+	app.use(favicon(path.join(clientDir, "/resources/cardinal-core/favicon.ico")));
+	app.use(express.static(clientDir));
 	
 	// TODO Сделать автоматическое отключение cors для продакшн-версии.
 	// Разрешение запросов с домена http://localhost:1841.
@@ -28,20 +43,12 @@ module.exports = config => {
 		credentials: true
 	}));
 	
-	app.locals.pretty = true;
-	app.set("view engine", "jade");
-	app.set("views", path.join(__dirname, "views"));
-	app.locals.basedir = app.get("views");
-	
-	
 	// Основные объекты запроса.
 	app.use((req, res, next) => {
 		req.config = config;
 		req.models = models;
 		next();
 	});
-	
-	app.use(express.static(path.join(__dirname, "../client/build/production/Cardinal")));
 	
 	app.use(require("./controllers"));
 	
