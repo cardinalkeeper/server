@@ -3,6 +3,10 @@
  * needed for your application, but these edits will have to be merged by
  * Sencha Cmd when upgrading.
  */
+
+// WAI-ARIA compatibility warnings can be suppressed by adding the following to application startup code
+Ext.ariaWarn = Ext.emptyFn; 
+
 Ext.application({
     name: 'Cardinal',
 

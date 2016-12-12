@@ -65,6 +65,7 @@
      *      ]
      */
     "requires": [
+        "ux",
         "font-awesome",
         "cardinal-core"
     ],
@@ -326,6 +327,10 @@
      * Settings specific to development builds.
      */
     "development": {
+        /*"js": [{
+            "path": "../packages/local/cardinal-core/src/sim/DataSimulation.js"
+        }],*/
+        /*"requires": ["ux"],*/
         "watch": {
             "delay": 250
         }

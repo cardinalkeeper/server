@@ -6,7 +6,7 @@
   "version": "0.0.1",
   "main": "app/index.js",
   "scripts": {
-    "start": "nodemon --debug index.js --",
+    "start": "nodemon --ignore ./client/*.* --debug index.js --",
     "build": "",
     "serve": ""
   },
@@ -31,6 +31,8 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-shell": "^0.5.2",
     "gulp-todo": "^5.1.0",
     "nodemon": "^1.9.2"
   }

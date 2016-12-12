@@ -12,11 +12,12 @@ bower_components
 
 bootstrap.js
 bootstrap.json
+bootstrap.jsonp
 bootstrap.css
+bootstrap-specs.js
 bootstrap-data.js
 bootstrap-files.js
 bootstrap-manifest.js
-bootstrap-specs.js
 bootstrap-modern-data.js
 bootstrap-modern-files.js
 bootstrap-modern-manifest.js

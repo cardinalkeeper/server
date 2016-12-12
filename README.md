@@ -2,12 +2,31 @@
 Кардинал
 =========
 
+
+Не работает опция --ignore для nodemon
+
+Отслеживать проблему с sencha app watch
+https://www.sencha.com/forum/showthread.php?332716-After-creating-my-package-WRN-theme-background-image-Theme-image-not-found&p=1166898#post1166898
+
+
+Ссылки на пред. версию кардинала для альтернативы
+https://ide.c9.io/khusamov/alternativa_online_server
+http://alternativa-online-server-khusamov.c9.io/public/#/alternativa/contractor
+https://ide.c9.io/khusamov/cardinalkeeper-database
+https://github.com/cardinalkeeper/database
+
+
+
+
+
+
+
 На данный момент действующие репозитории Кардинала это:
-server
-client
+server (потом переименовать в core)
 database
 
 Следующие репозитории потом можно удалить:
+client
 https://github.com/cardinalkeeper/core
 https://github.com/cardinalkeeper/contractor
 
@@ -29,6 +48,8 @@ https://github.com/cardinalkeeper/contractor
 
 ```
 cd C:/@repositories/cardinalkeeper/client/cardinal && sencha app build
+или
+cd C:/@repositories/cardinalkeeper && gulp build:client
 ```
 
 
@@ -48,6 +69,8 @@ cd C:/@repositories/cardinalkeeper && cls && nodemon --debug index.js -- --confi
 
 ```
 cd C:/@repositories/cardinalkeeper/client/cardinal && sencha app watch
+или
+cd C:/@repositories/cardinalkeeper && gulp watch:client
 ```
 
 Внимание, клиентская часть сделана без эмуляции сервера, поэтому сервер тоже следует запускать.
@@ -62,3 +85,12 @@ http://kosmos:8080/
 Просмотр клиентской части средствами Sencha Cmd (watch):
 
 http://kosmos:1841/cardinal/
+
+Процесс разработки
+-------------------
+
+Автоматическая сборка файла TODO.md
+
+```
+gulp todo
+```

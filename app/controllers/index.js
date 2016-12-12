@@ -11,3 +11,4 @@ module.exports = router;
 
 
 router.get("/MigrationHistory", require("./migrationHistory").get);
+router.get("/MenuItem/:pid", require("./menuItem").get);

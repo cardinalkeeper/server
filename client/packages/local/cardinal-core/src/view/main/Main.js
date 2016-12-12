@@ -1,3 +1,6 @@
+
+/* global Ext */
+
 /**
  * This class is the main view for the application. It is specified in app.js as the
  * "mainView" property. That setting automatically applies the "viewport"
@@ -16,13 +19,14 @@ Ext.define('Cardinal.core.view.main.Main', {
         'Cardinal.core.view.main.MainController',
         'Cardinal.core.view.main.MainModel',
         'Cardinal.core.view.main.List',
-        "Cardinal.core.view.migrationHistory.MigrationHistory"
+        "Cardinal.core.view.migrationHistory.MigrationHistory",
+        "Cardinal.core.view.company.CompanyTreeDocs"
     ],
 
     controller: 'main',
     viewModel: 'main',
 
-    ui: 'navigation',
+    ui: 'navigation', 
 
     tabBarHeaderPosition: 1,
     titleRotation: 0,
@@ -91,11 +95,9 @@ Ext.define('Cardinal.core.view.main.Main', {
             xtype: 'migration-history'
         }]
     }, {
-        title: 'Groups',
-        iconCls: 'fa-users',
-        bind: {
-            html: '{loremIpsum}'
-        }
+        title: 'Компания',
+        iconCls: 'fa-home',
+        xtype: "company-tree-docs"
     }, {
         title: 'Settings',
         iconCls: 'fa-cog',
