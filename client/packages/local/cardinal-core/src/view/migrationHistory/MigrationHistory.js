@@ -21,15 +21,21 @@ Ext.define("Cardinal.core.view.migrationHistory.MigrationHistory", {
 		store: "{migrationHistory}"
 	},
 	
-	
+	features: [{
+		ftype: "grouping",
+		groupHeaderTpl: [
+			"{[values.children[0].get('title')]} ",
+			"({rows.length}) | ",
+			"Версия: {[values.children[0].get('version')]} | ",
+			"Дата: {[values.children[0].get('applied')]}",
+			"{[values.children[0].get('notes') ? ' | ' + values.children[0].get('notes') : '']}"
+		]
+	}],
 	
 	columns: [{
-		text: "№",
+		/*text: "№",
 		dataIndex: "id",
-		width: 50,
-		
-		align: "end"
-		
+		width: 50
 	}, {
 		text: "Применено",
 		dataIndex: "applied",
@@ -45,6 +51,10 @@ Ext.define("Cardinal.core.view.migrationHistory.MigrationHistory", {
 	}, {
 		text: "Заметки",
 		dataIndex: "notes",
+		flex: 1
+	}, {*/
+		text: "Операция",
+		dataIndex: "text",
 		flex: 1
 	}]
 	

@@ -8,7 +8,7 @@ module.exports = db => {
 		
 		get: () => {
 			
-			return db.manyOrNone("select * from migration_history");
+			return db.manyOrNone("select * from migration_history_view");
 			
 		}
 		

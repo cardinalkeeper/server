@@ -10,7 +10,8 @@ Ext.define("Cardinal.core.view.migrationHistory.MigrationHistoryModel", {
 	stores: {
 		migrationHistory: {
 			model: "Cardinal.core.model.MigrationHistory",
-			autoLoad: true
+			autoLoad: true,
+			groupField: "version"
 		}
 	}
 	

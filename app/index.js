@@ -6,6 +6,7 @@
 const path = require("path");
 const cors = require("cors");
 const express = require("express");
+const bodyParser = require("body-parser");
 const favicon = require("serve-favicon");
 
 module.exports = config => {
@@ -22,6 +23,8 @@ module.exports = config => {
 	app.set("view engine", "jade");
 	app.set("views", path.join(__dirname, "views"));
 	app.locals.basedir = app.get("views");
+	
+	app.use(bodyParser.json());
 	
 	/*app.use((req, res, next) => {
 		console.log(req.path);

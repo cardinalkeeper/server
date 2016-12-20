@@ -55,7 +55,8 @@ Ext.define("Cardinal.core.view.base.treeDocs.TreeDocsController", {
 			}
 			tabPanel.setActiveTab(tab);
 		} else {
-			Ext.toast("Не найден класс" + viewClassname, "Внимание!");
+			//Ext.toast("Не найден класс " + viewClassname, "Внимание!");
+			console.warn("Не найден класс:", viewClassname);
 		}
 		
 	},

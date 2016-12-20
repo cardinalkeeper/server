@@ -42,7 +42,7 @@ Ext.define('Cardinal.core.view.main.Main', {
             },
             flex: 0
         },
-        iconCls: 'fa-th-list'
+        iconCls: 'fa-leaf' // http://fontawesome.io/icons/
     },
 
     tabBar: {
@@ -65,6 +65,11 @@ Ext.define('Cardinal.core.view.main.Main', {
     defaults: {
         //bodyPadding: 20,
         tabConfig: {
+            plugins: "responsive",
+            iconAlign: "left",
+            textAlign: "left"
+        }
+        /*tabConfig: {
             plugins: 'responsive',
             responsiveConfig: {
                 wide: {
@@ -78,7 +83,7 @@ Ext.define('Cardinal.core.view.main.Main', {
                     width: 120
                 }
             }
-        }
+        }*/
     },
 
     items: [{

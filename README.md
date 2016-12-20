@@ -57,20 +57,19 @@ cd C:/@repositories/cardinalkeeper && gulp build:client
 Запуск 
 ------
 
-Три варианта запуска сервера для тестирования:
+Варианты запуска сервера для тестирования:
 
 ```
-cd C:/@repositories/cardinalkeeper && cls && npm run start -- --config ./temp/config.json
-cd C:/@repositories/cardinalkeeper && cls && node index.js -c temp/config.json
-cd C:/@repositories/cardinalkeeper && cls && nodemon --debug index.js -- --config ./temp/config.json
+title Cardinal Server && cd C:/@repositories/cardinalkeeper && cls && npm run start -- --config ./temp/config.json
+title Cardinal Server && cd C:/@repositories/cardinalkeeper && cls && nodemon --debug index.js -- --config ./temp/config.json
+title Cardinal Server && cd C:/@repositories/cardinalkeeper && cls && node index.js -c ./temp/config.json
 ```
 
-Запуск клиентской части для тестирования:
+Варианты запуска клиентской части для тестирования:
 
 ```
-cd C:/@repositories/cardinalkeeper/client/cardinal && sencha app watch
-или
-cd C:/@repositories/cardinalkeeper && gulp watch:client
+title Cardinal Client Watch && cd C:/@repositories/cardinalkeeper && cls && gulp watch:client
+title Cardinal Client Watch && cd C:/@repositories/cardinalkeeper/client/cardinal && cls && sencha app watch
 ```
 
 Внимание, клиентская часть сделана без эмуляции сервера, поэтому сервер тоже следует запускать.

@@ -10,12 +10,13 @@ Ext.define("Cardinal.core.view.company.CompanyTreeDocs", {
     requires: [
     	"Cardinal.core.view.base.treeDocs.TreeDocsController",
     	"Cardinal.core.view.base.treeDocs.TreeDocsModel",
-    	"Cardinal.core.view.company.contractor.Contractor"
+    	"Cardinal.core.view.company.contractor.Contractor",
+    	"Cardinal.core.view.company.contractor.individual.Individual"
     ],
 
     viewModel: {
     	data: {
-			title: "Основные документы2",
+			title: "Основные документы",
     		rootPath: "company"
     	}
     }

@@ -30,6 +30,14 @@ Ext.define("Cardinal.core.Application", {
 	
 	launch: function () {
 		// TODO - Launch the application
+		
+		/*Ext.getHead().appendChild({
+			tag: "link",
+			type: "image/vnd.microsoft.icon",
+			rel: "icon",
+			href: Ext.getResourcePath("favicon.ico")
+		});*/
+		
 	},
 
 	onAppUpdate: function () {

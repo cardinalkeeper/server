@@ -17,6 +17,9 @@ Ext.define("Cardinal.core.model.MigrationHistory", {
 	}, {
 		name: "notes",
 		type: "string"
+	}, {
+		name: "text",
+		type: "string"
 	}]
 	
 });
