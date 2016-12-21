@@ -7,6 +7,7 @@ module.exports = db => {
 			return db.manyOrNone(`
 				select iv.individual_id as id, iv.* 
 				from individual_view as iv
+				where document_deleted = false
 			`);
 		},
 		
@@ -63,8 +64,6 @@ module.exports = db => {
 				.then(function([individual, contractor, document]) {
 					data.client_id = data.id;
 					data.id = individual.id;
-					data.contractor_id = contractor.id;
-					data.document_id = document.id;
 					return data;
 				});
 			
@@ -135,7 +134,7 @@ module.exports = db => {
 				})
 				
 				.then(([individual, contractor, document]) => {
-					return db.none("delete from document where id = $/id/", document);
+					return db.none("update document set deleted = true where id = $/id/", document);
 				})
 				
 				.then(none => data);
