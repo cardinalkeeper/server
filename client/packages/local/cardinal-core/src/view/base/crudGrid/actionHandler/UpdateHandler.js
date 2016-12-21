@@ -56,10 +56,8 @@ Ext.define("Cardinal.core.view.base.crudGrid.actionHandler.UpdateHandler", {
 		}
 	},
 	
-	
-	
 	onFailure: function(batch, options) {
-		Ext.Msg.alert("Ошибка", "Произошла ошибка при обновлении!");
+		Ext.Msg.error("Ошибка", "Произошла ошибка при обновлении!");
 		console.error("Произошла ошибка при обновлении!", batch, options);
 	}
 	

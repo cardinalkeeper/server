@@ -43,7 +43,7 @@ Ext.define("Cardinal.core.view.base.crudGrid.actionHandler.InsertHandler", {
 	},
 	
 	onFailure: function(record, operation) {
-		Ext.Msg.alert("Ошибка", "Произошла ошибка при добавлении!");
+		Ext.Msg.error("Ошибка", "Произошла ошибка при добавлении!");
 		console.error("Произошла ошибка при добавлении!", record, operation);
 	}
 	

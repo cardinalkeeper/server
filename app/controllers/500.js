@@ -9,15 +9,14 @@ module.exports = (err, req, res, next) => {
 		stack: req.app.get("env") === "development" ? err.stack : null
 	};
 	
-	if (err.status != 404) console.error(err.stack);
-	
 	res.status(err.status || 500);
 	
 	if (req.xhr) {
 		res.send({
+			error: err,
 			success: false,
 			title: page.title,
-			message: page.message,
+			message: page.message || page.stack.split("\n")[0],
 			stack: page.stack && page.stack.split("\n")
 		});
 	} else {

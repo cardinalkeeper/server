@@ -1,18 +1,13 @@
 
-
 module.exports = db => {
-	
 	
 	return {
 		
-		
 		get: () => {
-			
 			return db.manyOrNone(`
 				select iv.individual_id as id, iv.* 
 				from individual_view as iv
 			`);
-			
 		},
 		
 		post: data => {
@@ -40,8 +35,6 @@ module.exports = db => {
 				`
 			};
 			
-			
-
 			return db
 			
 				.oneOrNone(sql.insertIndividual, data)
@@ -68,13 +61,7 @@ module.exports = db => {
 					individual.document["notes"] = data["document_notes"];
 					individual.document["date_start"] = data["document_date_start"];
 					individual.document["number"] = data["document_number"];
-					return db.none(sql.updateOneDocument, individual.document).then(function() { return individual })
-					
-					
-					.catch(err=>{
-						console.log(err)
-						console.log(individual.document)
-					});
+					return db.none(sql.updateOneDocument, individual.document).then(function() { return individual });
 				})
 				
 				.then(function(individual) {
@@ -83,11 +70,102 @@ module.exports = db => {
 					return data;
 				});
 			
-			
-		}
+		},
 		
+		put: (data) => {
+			
+			return db
+			
+				.oneOrNone(`select * from individual where id = $/id/`, data)
+				
+				.then(individual => {
+					return (
+						db
+							.oneOrNone(`select * from contractor where id = $/contractor_id/`, individual)
+							.then(contractor => [individual, contractor])
+					);
+				})
+				
+				.then(([individual, contractor]) => {
+					return (
+						db
+							.oneOrNone(`select * from document where id = $/document_id/`, contractor)
+							.then(document => [individual, contractor, document])
+					);
+				})
+				
+				.then(([individual, contractor, document]) => {
+					data.document_id = document.id; 
+					data.contractor_id = contractor.id;
+					return db.tx(function(t) {
+						let batch = [], list;
+						
+						list = fieldlist("first_name, surname, patronymic", "individual", data);
+						if (list) batch.push(t.none(`update individual set ${list} where id = $/id/`, data));
+						
+						list = fieldlist("notes, date_start, number", "document", data);
+						if (list) batch.push(t.none(`update document set ${list} where id = $/document_id/`, data));
+						
+						return t.batch(batch);
+					});
+				})
+				
+				.then(none => data);
+				
+		},
+		
+		delete: data => {
+			
+			return db
+			
+				.oneOrNone(`select * from individual where id = $/id/`, data)
+				
+				.then(individual => {
+					return (
+						db
+							.oneOrNone(`select * from contractor where id = $/contractor_id/`, individual)
+							.then(contractor => [individual, contractor])
+					);
+				})
+				
+				.then(([individual, contractor]) => {
+					return (
+						db
+							.oneOrNone(`select * from document where id = $/document_id/`, contractor)
+							.then(document => [individual, contractor, document])
+					);
+				})
+				
+				.then(([individual, contractor, document]) => {
+					return db.none("delete from document where id = $/id/", document);
+				})
+				
+				.then(none => data);
+				
+		}
 		
 	};
 	
-	
 };
+
+/**
+ * @param {String} fields Список полей через запятую.
+ * @param {String} prefix Префикс полей в массиве значений values.
+ * @param {Object} values Массив значений { fieldname: value, ... }.
+ */
+function fieldlist(fields, prefix, values) {
+	
+	let result = [];
+	
+	fields = fields.split(",");
+	
+	fields.forEach(field => {
+		field = field.trim();
+		if (prefix + "_" + field in values) {
+			result.push(`${field} = $/${prefix}_${field}/`);
+		}
+	});
+	
+	return result.length ? result.join(", ") : null;
+
+}

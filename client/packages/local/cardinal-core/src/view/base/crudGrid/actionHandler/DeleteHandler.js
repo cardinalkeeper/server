@@ -11,7 +11,7 @@ Ext.define("Cardinal.core.view.base.crudGrid.actionHandler.DeleteHandler", {
 		var me = this;
 		Ext.Msg.confirm("Удаление", "Удалить запись(и)?", function(confirm) {
 			if (confirm == "yes") {
-				var store = me.getStore();
+				var store = me.getGrid().getStore();
 				me.getGrid().getSelection().forEach(function(record) {
 					store.remove(record);
 				});

@@ -95,7 +95,9 @@ module.exports = {
 	
 	get: (req, res) => {
 		
-		let pid = req.params.pid;
+		let pid = req.params.pid || req.query.node;
+		
+		
 		
 		/*console.log(dataArr.filter(item => {
 			console.log(item, id, item.id == id)
@@ -104,7 +106,7 @@ module.exports = {
 		})[0])*/
 		
 		
-		const rootId = dataArr.filter(item => item.pid == null)[0].id;
+		//const rootId = dataArr.filter(item => item.pid == null)[0].id;
 		
 		
 		//pid = pid == "root" ? rootId : pid;

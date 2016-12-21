@@ -2,40 +2,45 @@
 
 module.exports = {
 	
-	
-	get: (req, res) => {
-		
+	get: (req, res, next) => {
 		const individual = req.models.get("contractor/individual");
 		individual.get().then(data => {
 			res.send({
 				success: true,
 				data
 			});
-		}).catch(err => {
-			res.send({
-				success: false,
-				err
-			});
-		});
-		
+		}).catch(next);
 	},
 	
-	post: (req, res) => {
+	post: (req, res, next) => {
 		const individual = req.models.get("contractor/individual");
-		
 		individual.post(req.body).then(data => {
 			res.send({
 				success: true,
 				data
 			});
-		}).catch(err => {
-			res.status(500).send({
-				success: false,
-				err
-			});
-		});
+		}).catch(next);
 		
-	}
+	},
 	
+	put: (req, res, next) => {
+		const individual = req.models.get("contractor/individual");
+		individual.put(req.body).then(data => {
+			res.send({
+				success: true,
+				data
+			});
+		}).catch(next);
+	},
+	
+	delete: (req, res, next) => {
+		const individual = req.models.get("contractor/individual");
+		individual.delete(req.body).then(data => {
+			res.send({
+				success: true,
+				data
+			});
+		}).catch(next);
+	}
 	
 };

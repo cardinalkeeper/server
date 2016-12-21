@@ -2,8 +2,13 @@
 /**
  * Подключение моделей.
  */
+ 
+const options = {};
 
-const pgp = require("pg-promise")({});
+const pgp = require("pg-promise")(options);
+const monitor = require("pg-monitor");
+
+monitor.attach(options);
 
 module.exports = config => {
 	

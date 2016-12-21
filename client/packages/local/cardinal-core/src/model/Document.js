@@ -25,12 +25,10 @@ Ext.define("Cardinal.core.model.Document", {
 		type: "string"
 	}, {
 		name: "document_date_start",
-		type: "date",
-		dateFormat: "Y-m-d"
+		type: "date"
 	}, {
 		name: "document_date_end",
-		type: "date",
-		dateFormat: "Y-m-d"
+		type: "date"
 	}]
 	
 });

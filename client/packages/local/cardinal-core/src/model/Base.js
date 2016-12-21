@@ -53,6 +53,7 @@ Ext.define("Cardinal.core.model.Base", {
 		//</debug>
 		
 		proxy: {
+			appendId: false,
 			type: "rest", 
 			//url: "{prefix}/{entityName}",
 			//<debug>
