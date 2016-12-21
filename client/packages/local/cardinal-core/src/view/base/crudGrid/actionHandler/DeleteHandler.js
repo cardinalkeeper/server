@@ -7,12 +7,21 @@ Ext.define("Cardinal.core.view.base.crudGrid.actionHandler.DeleteHandler", {
 
 	alias: "crud-grid-action-handler.delete",
 	
+	multiDeleteTextTpl: "Удалить выбранные записи ({count})?",
+	
+	singleDeleteTextTpl: "Удалить выбранную запись?",
+	
 	execute: function() {
-		var me = this;
-		Ext.Msg.confirm("Удаление", "Удалить запись(и)?", function(confirm) {
+		var me = this, store = me.getGrid().getStore();
+		var selection = me.getGrid().getSelection();
+		
+		var message = new Ext.Template(me[(selection.length == 1 ? "single" : "multi") + "DeleteTextTpl"]).apply({
+			count: selection.length
+		});
+		
+		Ext.Msg.confirm("Удаление", message, function(confirm) {
 			if (confirm == "yes") {
-				var store = me.getGrid().getStore();
-				me.getGrid().getSelection().forEach(function(record) {
+				selection.forEach(function(record) {
 					store.remove(record);
 				});
 				store.sync();

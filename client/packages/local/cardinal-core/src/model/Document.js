@@ -6,9 +6,6 @@ Ext.define("Cardinal.core.model.Document", {
 	extend: "Cardinal.core.model.Base",
 	
 	fields: [{
-		name: "document_id",
-		type: "int"
-	}, {
 		name: "document_parent_id",
 		type: "int"
 	}, {

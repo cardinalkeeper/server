@@ -6,9 +6,6 @@ Ext.define("Cardinal.core.model.contractor.Individual", {
 	extend: "Cardinal.core.model.contractor.Contractor",
 	
 	fields: [{
-		name: "individual_id",
-		type: "int"
-	}, {
 		name: "individual_first_name",
 		type: "string"
 	}, {

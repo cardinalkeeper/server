@@ -42,31 +42,29 @@ module.exports = db => {
 				.then(function(individual) {
 					return db.oneOrNone(sql.selectOneContractor, individual)
 						.then(function(contractor) {
-							return {
-								main: individual,
-								contractor: contractor
-							};
+							return [individual, contractor];
 						});
 				})
 				
-				.then(function(individual) {
-					return db.oneOrNone(sql.selectOneDocument, individual.contractor)
+				.then(function([individual, contractor]) {
+					return db.oneOrNone(sql.selectOneDocument, contractor)
 						.then(function(document) {
-							individual.document = document;
-							return individual;
+							return [individual, contractor, document];
 						});
 				})
 				
-				.then(function(individual) {
-					individual.document["notes"] = data["document_notes"];
-					individual.document["date_start"] = data["document_date_start"];
-					individual.document["number"] = data["document_number"];
-					return db.none(sql.updateOneDocument, individual.document).then(function() { return individual });
+				.then(function([individual, contractor, document]) {
+					document["notes"] = data["document_notes"];
+					document["date_start"] = data["document_date_start"];
+					document["number"] = data["document_number"];
+					return db.none(sql.updateOneDocument, document).then(function() { return [individual, contractor, document] });
 				})
 				
-				.then(function(individual) {
+				.then(function([individual, contractor, document]) {
 					data.client_id = data.id;
-					data.document_id = individual.document.document_id;
+					data.id = individual.id;
+					data.contractor_id = contractor.id;
+					data.document_id = document.id;
 					return data;
 				});
 			
